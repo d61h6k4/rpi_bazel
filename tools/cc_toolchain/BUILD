@@ -21,7 +21,7 @@ cc_toolchain_suite(
     name = "toolchain",
     toolchains = {
         "k8|clang": "cc_toolchain_linux",
-        "armeabihf|clang": "cc_toolchain_armeabihf",
+        "armhf|clang": "cc_toolchain_armhf",
     },
 )
 
@@ -98,11 +98,11 @@ filegroup(
 )
 
 cc_toolchain_config(
-    name = "clang-armeabihf",
-    toolchain_identifier = "clang-armeabihf",
+    name = "clang-armhf",
+    toolchain_identifier = "clang-armhf",
     cpu = "k8",
-    target_cpu = "armeabihf",
-    target_system_name = "armeabihf",
+    target_cpu = "armhf",
+    target_system_name = "armhf",
     builtin_include_directories = [
         "external/raspberry_pi/sysroot/usr/include/arm-linux-gnueabihf",
         "external/raspberry_pi/sysroot/usr/include",
@@ -113,14 +113,14 @@ cc_toolchain_config(
     host_compiler_prefix = "wrapper",
     host_compiler_path = "wrapper/clang-clang",
     extra_features = [
-        "armeabihf",
+        "armhf",
     ],
     linker_bin_path = "external/org_llvm_clang/bin",
 )
 
 cc_toolchain(
-    name = "cc_toolchain_armeabihf",
-    toolchain_identifier = "clang-armeabihf",
+    name = "cc_toolchain_armhf",
+    toolchain_identifier = "clang-armhf",
     all_files = ":clang_arm_all",
     compiler_files = ":clang_arm_all",
     dwp_files = ":clang_wrappers",
@@ -130,5 +130,5 @@ cc_toolchain(
     objcopy_files = ":clang_wrappers",
     strip_files = ":clang_wrappers",
     supports_param_files = True,
-    toolchain_config = ":clang-armeabihf",
+    toolchain_config = ":clang-armhf",
 )

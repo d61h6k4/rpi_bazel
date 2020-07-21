@@ -135,8 +135,8 @@ def _impl(ctx):
         ] if ctx.attr.host_unfiltered_compile_flags else []),
     )
 
-    armeabihf_feature = feature(
-        name = "armeabihf",
+    armhf_feature = feature(
+        name = "armhf",
         flag_sets = [
             flag_set(
                 actions = all_compile_actions + all_link_actions,
@@ -508,8 +508,8 @@ def _impl(ctx):
             "linker-bin-path",
             "lld",
             "debuginfo",
-        ] + (["armeabihf", "rpi_sysroot"]
-             if "armeabihf" in ctx.attr.extra_features else [])
+        ] + (["armhf", "rpi_sysroot"]
+             if "armhf" in ctx.attr.extra_features else [])
     )
 
     features = [
@@ -534,7 +534,7 @@ def _impl(ctx):
         supports_pic_feature,
         lld_feature,
         debuginfo_feature,
-        armeabihf_feature,
+        armhf_feature,
         rpi_sysroot_feature,
     ]
 
@@ -585,7 +585,7 @@ def _impl(ctx):
 cc_toolchain_config = rule(
         implementation = _impl,
     attrs = {
-        "cpu": attr.string(mandatory = True, values = ["k8", "armeabihf"]),
+        "cpu": attr.string(mandatory = True, values = ["k8", "armhf"]),
         "builtin_include_directories": attr.string_list(),
         "extra_no_canonical_prefixes_flags": attr.string_list(),
         "host_compiler_path": attr.string(),

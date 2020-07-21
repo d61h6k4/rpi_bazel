@@ -58,8 +58,8 @@ In `tools/bazel.rc`
 build --crosstool_top=@rpi_bazel//tools/cc_toolchain:toolchain
 test --crosstool_top=@rpi_bazel//tools/cc_toolchain:toolchain
 
-build:pi --cpu=armeabihf
-test:pi --cpu=armeabihf
+build:pi --cpu=armhf
+test:pi --cpu=armhf
 
 build:pi --compiler=clang
 test:pi --compiler=clang
